@@ -5,7 +5,11 @@ class HomeController
 {
     public function show () {
 
-        $homeViewObj = new HomeView();
+        $postRepObj = new PostRepository();
+
+        $postsForSideBar = $postRepObj->getFreshPosts();
+
+        $homeViewObj = new HomeView($postsForSideBar);
 
         return $homeViewObj->getHtml();
     }

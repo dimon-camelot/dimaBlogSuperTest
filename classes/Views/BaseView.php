@@ -3,6 +3,14 @@
 
 abstract class BaseView
 {
+    protected $postsForSideBar;
+
+    public function __construct($postsForSideBar)
+    {
+        $this->postsForSideBar = $postsForSideBar;
+    }
+
+
     public function getHtml()
     {
         $html = "
@@ -34,7 +42,7 @@ abstract class BaseView
          </section>
          
          <div class=\"footer_bottom\">
-            <p class=\"copyright\">Copyright &copy; 2020 <a href=\"index.php?controller=post&action=showPost&id=19\">DimaBlog</a></p>
+            <p class=\"copyright\">Copyright &copy; 2020 <a href=\"index.php\">DimaBlog</a></p>
         </div>
     </div>
     
@@ -50,7 +58,7 @@ abstract class BaseView
     protected function getHead(): string
     {
         return '
-<title>Dima Blog</title>
+<title>DimaBlog</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
@@ -63,7 +71,15 @@ abstract class BaseView
 
     protected function getSidebar(): string
     {
-        return "<hr><h3>Здесь будет сайдбар</h3>";
+        $postsArray = $this->postsForSideBar;
+        $html = '<hr>';
+
+        foreach ($postsArray as $item){
+            $html .= "<p>{$item->title}</p>"; //потом сделаю ссылками
+
+        }
+
+        return $html;
     }
 
     protected function getFooter(): string
@@ -80,7 +96,7 @@ abstract class BaseView
         <div class='header_top'>
           <div class='header_top_left'>
             <ul class='top_nav'>
-              <li><a href = '#'>На главную</a></li>
+              <li><a href = 'index.php'>На главную</a></li>
               <li><a href = '#'>О блоге</a></li>
               <li><a href = '#'>Как связаться</a></li>
             </ul>
@@ -91,11 +107,11 @@ abstract class BaseView
         </div>
       </div>
       <div class='col-lg-12 col-md-12 col-sm-12'>
-        <div class='header_bottom' >
-          <div class='logo_area' ><a href = 'index.html' class='logo' ><img src = 'images/logo.jpg' alt = '' ></a ></div >
-        </div >
-      </div >
-    </div >  
+        <div class='header_bottom'>
+          <div class='logo_area'><a href = 'index.html' class='logo'><img src = 'images/logo.jpg' alt = ''></a></div>
+        </div>
+      </div>
+    </div>  
         ";
     }
 }

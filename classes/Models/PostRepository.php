@@ -29,4 +29,28 @@ class PostRepository
 
     }
 
+    public function getFreshPosts(): array
+    {
+        $query = "SELECT * FROM posts ORDER BY id DESC LIMIT 5";
+        $rawArray = $this->dbObj->makeSelectFromDB($query); //получаем сырой массив
+
+        $resaltArray = [];
+
+        foreach ($rawArray as $item) {
+            $post = new Post();
+
+            $post->title = $item['title'];
+            $post->id = $item['id'];
+            $post->date = $item['date'];
+            $post->body = $item['body'];
+
+            $resaltArray[] = $post;
+
+        }
+
+        return $resaltArray;
+
+
+    }
+
 }

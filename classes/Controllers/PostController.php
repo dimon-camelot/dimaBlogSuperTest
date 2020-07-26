@@ -16,8 +16,9 @@ class PostController
         $postRepositoryObj = new PostRepository;
 
         $post = $postRepositoryObj->getPostById($postID);
+        $freshPosts = $postRepositoryObj->getFreshPosts();
 
-        $postViewObj = new PostView($post);
+        $postViewObj = new PostView($freshPosts, $post);
 
         return $postViewObj->getHtml();
 

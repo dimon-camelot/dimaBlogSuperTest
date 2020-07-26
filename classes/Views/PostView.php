@@ -7,9 +7,10 @@ class PostView extends BaseView
 {
     public $postObj;
 
-    public function __construct($postObj)
+    public function __construct($freshPosts,$postObj)
     {
         $this->postObj = $postObj;
+        $this->postsForSideBar = $freshPosts;
     }
 
 
