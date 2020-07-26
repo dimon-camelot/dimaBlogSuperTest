@@ -16,9 +16,10 @@ class PostController
         $postRepositoryObj = new PostRepository;
 
         $post = $postRepositoryObj->getPostById($postID);
-        $freshPosts = $postRepositoryObj->getFreshPosts();
 
-        $postViewObj = new PostView($freshPosts, $post);
+        $postsForSideBar = $postRepositoryObj->getFreshPosts();//  приходится дублировать эту строку в других контроллерах
+
+        $postViewObj = new PostView($postsForSideBar, $post);
 
         return $postViewObj->getHtml();
 
