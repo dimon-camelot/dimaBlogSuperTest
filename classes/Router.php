@@ -5,6 +5,12 @@ class Router
 {
     public function routerResponse()
     {
+        if(empty($_GET)) {
+            $homeControllerObj = new HomeController();
+
+            return $homeControllerObj->show();
+        }
+
         $controllerName = $_GET['controller']; //дёргаем назвние контроллера из ГЕТ запроса
         $actionName = $_GET['action']; //дёргаем названия экшена из ГЕТ запроса
 

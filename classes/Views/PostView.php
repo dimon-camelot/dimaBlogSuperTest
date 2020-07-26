@@ -21,9 +21,12 @@ class PostView extends BaseView
         <title>Пост</title>
         </head>
         <body>
-        <h2>{$this->postObj->title}</h2>
-        <h3>{$this->postObj->date}</h3>
-        <h4>{$this->postObj->body}</h4>
+        <hr>
+        <h3>{$this->postObj->title}</h3>
+        <h4>{$this->postObj->date}</h4>
+        <br>
+        <p>{$this->postObj->body}</p>
+        <br>
         </body>
         </html>
         ";

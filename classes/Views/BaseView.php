@@ -63,7 +63,7 @@ abstract class BaseView
 
     protected function getSidebar(): string
     {
-        return "<h3>Здесь будет сайдбар</h3>";
+        return "<hr><h3>Здесь будет сайдбар</h3>";
     }
 
     protected function getFooter(): string
@@ -73,28 +73,29 @@ abstract class BaseView
 
     protected function getHeader(): string
     {
-        return '        
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_top">
-          <div class="header_top_left">
-            <ul class="top_nav">
-              <li><a href = "#">На главную</a></li>
-              <li><a href = "#">О блоге</a></li>
-              <li><a href = "#">Как связаться</a></li>
+        $currentDate = date("d - F - Y");
+        return "        
+    <div class='row'>
+      <div class='col-lg-12 col-md-12 col-sm-12'>
+        <div class='header_top'>
+          <div class='header_top_left'>
+            <ul class='top_nav'>
+              <li><a href = '#'>На главную</a></li>
+              <li><a href = '#'>О блоге</a></li>
+              <li><a href = '#'>Как связаться</a></li>
             </ul>
           </div>
-          <div class="header_top_right">
-            <p>Текущие дата и время</p>
+          <div class='header_top_right'>
+            <p>{$currentDate}</p>
           </div>
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 col-sm-12">
-        <div class="header_bottom" >
-          <div class="logo_area" ><a href = "index.html" class="logo" ><img src = "images/logo.jpg" alt = "" ></a ></div >
+      <div class='col-lg-12 col-md-12 col-sm-12'>
+        <div class='header_bottom' >
+          <div class='logo_area' ><a href = 'index.html' class='logo' ><img src = 'images/logo.jpg' alt = '' ></a ></div >
         </div >
       </div >
     </div >  
-        ';
+        ";
     }
 }
