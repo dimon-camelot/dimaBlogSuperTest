@@ -9,6 +9,8 @@ include_once 'classes/Views/BaseView.php';
 include_once 'classes/Views/PostView.php';
 include_once 'classes/Controllers/HomeController.php';
 include_once 'classes/Views/HomeView.php';
+include_once 'classes/Controllers/AllpostsController.php';
+include_once 'classes/Views/AllpostsView.php';
 
 $routerObj = new Router(); //создаем экземпляр роутера
 

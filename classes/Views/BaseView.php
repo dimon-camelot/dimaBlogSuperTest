@@ -72,12 +72,14 @@ abstract class BaseView
     protected function getSidebar(): string
     {
         $postsArray = $this->postsForSideBar;
-        $html = '<hr>';
+        $html = '<hr><h3>Свежее</h3>';
 
         foreach ($postsArray as $item){
-            $html .= "<p>{$item->title}</p>"; //потом сделаю ссылками
+            $html .= "<p><a href='index.php?controller=post&action=showPost&id={$item->id}'>{$item->title}</a></p>"; //потом сделаю ссылками
 
         }
+
+        $html .= '<br>';
 
         return $html;
     }
@@ -97,8 +99,7 @@ abstract class BaseView
           <div class='header_top_left'>
             <ul class='top_nav'>
               <li><a href = 'index.php'>На главную</a></li>
-              <li><a href = '#'>О блоге</a></li>
-              <li><a href = '#'>Как связаться</a></li>
+              <li><a href = 'index.php?controller=allposts&action=show'>Все посты</a></li>
             </ul>
           </div>
           <div class='header_top_right'>
