@@ -1,7 +1,7 @@
 <?php
 
 
-class AllpostsView extends BaseView
+class PagingView extends BaseView
 {
     protected $allPosts;
     protected $PagesCount;
@@ -23,7 +23,7 @@ class AllpostsView extends BaseView
         $html .= "<br>";
 
         for ($i = 1; $i <= $this->PagesCount; $i++) {
-            $html .= "<a href='index.php?controller=allposts&action=show&pageid={$i}'>$i </a>";
+            $html .= "<a href='index.php?controller=paging&action=show&pageid={$i}'>$i </a>";
         }
 
 

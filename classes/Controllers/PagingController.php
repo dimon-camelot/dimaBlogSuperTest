@@ -3,6 +3,7 @@
 
 class PagingController
 {
+    private $perPage = 3;
     public function show(){
 
         $pageID = 1;
@@ -16,7 +17,7 @@ class PagingController
 
         $postRepObj = new PostRepository();
 
-        $allPosts = $postRepObj->getPostsForPage($pageID);
+        $allPosts = $postRepObj->getPostsForPage($pageID, $this->perPage);
 
         $postsForSideBar = $postRepObj->getFreshPosts();
 
@@ -24,7 +25,7 @@ class PagingController
 
 
 
-        $AllpostsViewObj = new AllpostsView($postsForSideBar, $allPosts, $totalPostsCount);
+        $AllpostsViewObj = new PagingView($postsForSideBar, $allPosts, $totalPostsCount);
 
         return $AllpostsViewObj->getHtml();
 

@@ -60,9 +60,9 @@ class PostRepository
     }
 
 
-    public function getPostsForPage($pageNumber)
+    public function getPostsForPage($pageNumber, $perPage)
     {
-        $perPage = $this->postsPerPage;
+
 
         $offset = $perPage * $pageNumber - $perPage;
 

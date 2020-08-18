@@ -10,7 +10,7 @@ include_once 'classes/Views/PostView.php';
 include_once 'classes/Controllers/HomeController.php';
 include_once 'classes/Views/HomeView.php';
 include_once 'classes/Controllers/PagingController.php';
-include_once 'classes/Views/AllpostsView.php';
+include_once 'classes/Views/PagingView.php';
 
 $routerObj = new Router(); //создаем экземпляр роутера
 
