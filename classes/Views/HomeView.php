@@ -4,6 +4,9 @@
 class HomeView extends BaseView
 {
 
+    /**
+     * @return string
+     */
     protected function getContent(): string
     {
         $html = "

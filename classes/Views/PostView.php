@@ -1,39 +1,46 @@
 <?php
 
 
-
-
 class PostView extends BaseView
 {
-    public $postObj;
 
-    public function __construct($freshPosts,$postObj)
+    /**
+     * Пост, который вьюха отображает на странице
+     *
+     * @var Post
+     */
+    public $post;
+
+    /**
+     * PostView constructor.
+     *
+     * @param Post[] $postsForSidebar
+     * @param Post   $postForShow
+     */
+    public function __construct($postsForSidebar, $postForShow)
     {
-        $this->postObj = $postObj;
-        $this->postsForSideBar = $freshPosts;
+        $this->post = $postForShow;
+
+        parent::__construct($postsForSidebar);
     }
 
-
-    public function getContent(): string
+    /**
+     * Генерирует и отдает html код
+     *
+     * @return string
+     */
+    protected function getContent(): string
     {
         $html = "
-        <html>
-        <head>
-        <title>Пост</title>
-        </head>
-        <body>
         <hr>
-        <h3>{$this->postObj->title}</h3>
-        <h4>{$this->postObj->date}</h4>
+        <h3>{$this->post->title}</h3>
+        <h4>{$this->post->date}</h4>
         <br>
-        <p>{$this->postObj->body}</p>
+        <p>{$this->post->body}</p>
         <br>
-        </body>
-        </html>
         ";
 
         return $html;
-
     }
 
 }

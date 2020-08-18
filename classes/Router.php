@@ -3,23 +3,32 @@
 
 class Router
 {
+    /**
+     * @return string
+     */
     public function routerResponse()
     {
-        if(empty($_GET)) {
+        // Если ничего не пришло в запросе - действуем по-умолчанию, показываем домашнюю страницу
+        if (empty($_GET)) {
             $homeControllerObj = new HomeController();
 
             return $homeControllerObj->show();
         }
 
-        $controllerName = $_GET['controller']; //дёргаем назвние контроллера из ГЕТ запроса
-        $actionName = $_GET['action']; //дёргаем названия экшена из ГЕТ запроса
+        // Дёргаем назвние контроллера из ГЕТ запроса
+        $controllerName = $_GET['controller'];
 
-        $controllerClassName = ucfirst($controllerName) . 'Controller'; //формируем имя контроллера, делая первую букву большой
+        // Дёргаем названия экшена из ГЕТ запроса
+        $actionName = $_GET['action'];
 
-        $controller = new $controllerClassName; //создаем экземпляр контроллера
+        // Формируем имя контроллера, делая первую букву большой
+        $controllerClassName = ucfirst($controllerName) . 'Controller';
 
-        return $controller->$actionName(); //возвращаем результат экшена в контроллере
+        // Создаем экземпляр контроллера
+        $controller = new $controllerClassName;
 
+         // Возвращаем результат экшена в контроллере
+        return $controller->$actionName();
     }
 
 }

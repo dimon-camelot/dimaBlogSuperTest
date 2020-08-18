@@ -1,6 +1,7 @@
 <?php
 
 include_once 'classes/Router.php'; //подключаем класс роутера
+
 include_once 'classes/Controllers/PostController.php';
 include_once 'classes/Models/DB.php';
 include_once 'classes/Models/Post.php';

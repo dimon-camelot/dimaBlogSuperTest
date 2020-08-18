@@ -3,14 +3,24 @@
 
 abstract class BaseView
 {
+    /**
+     * @var Post[]
+     */
     protected $postsForSideBar;
 
+    /**
+     * BaseView constructor.
+     *
+     * @param Post[] $postsForSideBar
+     */
     public function __construct($postsForSideBar)
     {
         $this->postsForSideBar = $postsForSideBar;
     }
 
-
+    /**
+     * @return string
+     */
     public function getHtml()
     {
         $html = "
@@ -67,15 +77,21 @@ abstract class BaseView
         ';
     }
 
+    /**
+     * @return string
+     */
     protected abstract function getContent(): string;
 
+    /**
+     * @return string
+     */
     protected function getSidebar(): string
     {
         $postsArray = $this->postsForSideBar;
         $html = '<hr><h3>Свежее</h3>';
 
-        foreach ($postsArray as $item){
-            $html .= "<p><a href='index.php?controller=post&action=showPost&id={$item->id}'>{$item->title}</a></p>"; //потом сделаю ссылками
+        foreach ($postsArray as $item) {
+            $html .= "<p><a href='index.php?controller=post&action=showSingle&id={$item->id}'>{$item->title}</a></p>"; //потом сделаю ссылками
 
         }
 
@@ -84,11 +100,17 @@ abstract class BaseView
         return $html;
     }
 
+    /**
+     * @return string
+     */
     protected function getFooter(): string
     {
         return "<h1>Мой подвал</h1>";
     }
 
+    /**
+     * @return string
+     */
     protected function getHeader(): string
     {
         $currentDate = date("d - F - Y");
@@ -99,7 +121,7 @@ abstract class BaseView
           <div class='header_top_left'>
             <ul class='top_nav'>
               <li><a href = 'index.php'>На главную</a></li>
-              <li><a href = 'index.php?controller=paging&action=show'>Все посты</a></li>
+              <li><a href = 'index.php?controller=post&action=showList'>Все посты</a></li>
             </ul>
           </div>
           <div class='header_top_right'>

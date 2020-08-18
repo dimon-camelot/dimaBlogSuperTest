@@ -3,15 +3,29 @@
 
 class HomeController
 {
+    /**
+     * @var PostRepository
+     */
+    protected $postRepository;
+
+    /**
+     * HomeController constructor.
+     */
+    public function __construct()
+    {
+        $this->postRepository = new PostRepository;
+    }
+
+    /**
+     * @return string
+     */
     public function show () {
+        // Получаем свежие посты для сайдбара
+        $postsForSideBar = $this->postRepository->getFreshPosts();
 
-        $postRepObj = new PostRepository();
+        $view = new HomeView($postsForSideBar);
 
-        $postsForSideBar = $postRepObj->getFreshPosts();
-
-        $homeViewObj = new HomeView($postsForSideBar);
-
-        return $homeViewObj->getHtml();
+        return $view->getHtml();
     }
 
 }

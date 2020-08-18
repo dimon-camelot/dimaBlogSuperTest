@@ -3,8 +3,14 @@
 
 class DB
 {
+    /**
+     * @var mysqli
+     */
     protected $dbLink;
 
+    /**
+     * DB constructor.
+     */
     public function __construct()
     {
         $host = 'localhost';
@@ -17,6 +23,13 @@ class DB
         $this->dbLink = $link;
     }
 
+    /**
+     * Делает select запрос к БД и упаковывает ответ в массив
+     *
+     * @param string $sql
+     *
+     * @return array
+     */
     public function makeSelectFromDB(string $sql): array
     {
         $result = mysqli_query($this->dbLink, $sql);
