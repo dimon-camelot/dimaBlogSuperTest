@@ -1,7 +1,7 @@
 <?php
 
 
-class AllpostsController
+class PagingController
 {
     public function show(){
 
@@ -16,7 +16,7 @@ class AllpostsController
 
         $postRepObj = new PostRepository();
 
-        $allPosts = $postRepObj->getAllPosts($pageID);
+        $allPosts = $postRepObj->getPostsForPage($pageID);
 
         $postsForSideBar = $postRepObj->getFreshPosts();
 

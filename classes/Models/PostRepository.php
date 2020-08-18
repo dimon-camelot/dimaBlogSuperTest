@@ -12,6 +12,34 @@ class PostRepository
         $this->dbObj = new DB(); //создаем экземпляр класса работы с БД
     }
 
+    public function getPosts($offset = 0, $limit = null, $orderByField = 'id', $orderByType = 'desc')
+    {
+
+        $query = "SELECT * FROM posts ORDER BY {$orderByField} {$orderByType} limit {$limit} offset {$offset}";
+        $rawArray = $this->dbObj->makeSelectFromDB($query); //получаем сырой массив
+
+        foreach ($rawArray as $item) {
+            $post = new Post();
+
+            $post->title = $item['title'];
+            $post->id = $item['id'];
+            $post->date = $item['date'];
+            $post->body = $item['body'];
+
+            $resaltArray[] = $post;
+
+        }
+
+        return $resaltArray;
+
+    }
+
+    public function getFreshPosts()
+    {
+        return $this->getPosts(0, 5);
+    }
+
+
     public function getPostById($id): object
     {
         $query = "select * from posts where id = $id"; //формируем запрос в БД по ИД
@@ -31,31 +59,8 @@ class PostRepository
 
     }
 
-    public function getFreshPosts(): array
-    {
-        $query = "SELECT * FROM posts ORDER BY id DESC LIMIT 5";
-        $rawArray = $this->dbObj->makeSelectFromDB($query); //получаем сырой массив
 
-        $resaltArray = [];
-
-        foreach ($rawArray as $item) {
-            $post = new Post();
-
-            $post->title = $item['title'];
-            $post->id = $item['id'];
-            $post->date = $item['date'];
-            $post->body = $item['body'];
-
-            $resaltArray[] = $post;
-
-        }
-
-        return $resaltArray;
-
-
-    }
-
-    public function getAllPosts($pageNumber)
+    public function getPostsForPage($pageNumber)
     {
         $perPage = $this->postsPerPage;
 

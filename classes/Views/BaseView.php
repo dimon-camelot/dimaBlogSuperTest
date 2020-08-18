@@ -99,7 +99,7 @@ abstract class BaseView
           <div class='header_top_left'>
             <ul class='top_nav'>
               <li><a href = 'index.php'>На главную</a></li>
-              <li><a href = 'index.php?controller=allposts&action=show'>Все посты</a></li>
+              <li><a href = 'index.php?controller=paging&action=show'>Все посты</a></li>
             </ul>
           </div>
           <div class='header_top_right'>
