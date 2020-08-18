@@ -3,7 +3,7 @@
 
 class PagingController
 {
-    private $perPage = 3;
+    private $perPage = 3; // количество заголовков постов на странице
     public function show(){
 
         $pageID = 1;
