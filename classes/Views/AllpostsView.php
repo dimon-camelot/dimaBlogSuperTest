@@ -4,9 +4,11 @@
 class AllpostsView extends BaseView
 {
     protected $allPosts;
-    public function __construct($postsForSideBar, $allPost)
+    protected $PagesCount;
+    public function __construct($postsForSideBar, $allPost, $totalPostsCount)
     {
         $this->allPosts = $allPost;
+        $this->PagesCount = $totalPostsCount;
         parent::__construct($postsForSideBar);
     }
 
@@ -19,6 +21,12 @@ class AllpostsView extends BaseView
 
         }
         $html .= "<br>";
+
+        for ($i = 1; $i <= $this->PagesCount; $i++) {
+            $html .= "<a href='index.php?controller=allposts&action=show&pageid={$i}'>$i </a>";
+        }
+
+
         return $html;
     }
 }

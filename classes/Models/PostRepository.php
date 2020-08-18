@@ -5,6 +5,8 @@ class PostRepository
 {
     protected $dbObj;
 
+    protected $postsPerPage = 3; // Количество постов (заголовков) на странице пишем пока тут
+
     public function __construct()
     {
         $this->dbObj = new DB(); //создаем экземпляр класса работы с БД
@@ -53,8 +55,13 @@ class PostRepository
 
     }
 
-    public function getAllPosts(){
-        $query = "SELECT * FROM posts ORDER BY id DESC ";
+    public function getAllPosts($pageNumber)
+    {
+        $perPage = $this->postsPerPage;
+
+        $offset = $perPage * $pageNumber - $perPage;
+
+        $query = "SELECT * FROM posts ORDER BY id DESC limit {$perPage} offset {$offset}";
         $rawArray = $this->dbObj->makeSelectFromDB($query); //получаем сырой массив
 
         $resaltArray = [];
@@ -74,5 +81,21 @@ class PostRepository
         return $resaltArray;
 
     }
+
+    public function pagesCount()
+    {
+        $query = "SELECT COUNT(*) from `posts`";
+
+        $rawArray = $this->dbObj->makeSelectFromDB($query);
+
+        $totalPostsCount = $rawArray[0]['COUNT(*)'];
+
+        $result = ceil($totalPostsCount / $this->postsPerPage);
+
+
+        return $result;
+
+    }
+
 
 }
