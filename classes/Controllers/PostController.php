@@ -33,8 +33,8 @@ class PostController
 
 
         // Просчитываем сколько всего у нас страниц
-        $pagesAmount = $this->postRepository->getPostsTotalAmount();
-
+        $pagesAmount = ceil($this->postRepository->getPostsTotalAmount() / $this->perPage);
+        $pagesAmount = (int)$pagesAmount;
 
         // Получаем у репозитория посты для конкретной страницы
         $limit = $this->perPage;
